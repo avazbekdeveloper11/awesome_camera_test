@@ -24,8 +24,7 @@ void main() {
         );
         await allowPermissionsIfNeeded($);
 
-        final request =
-            await tempPath('record_video_single_${sensor.name}.mp4')(sensors);
+        final request = await tempPath('record_video_single_${sensor.name}.mp4')(sensors);
         final filePath = request.when(single: (single) => single.file!.path);
         await $(AwesomeCaptureButton).tap(andSettle: false);
         await allowPermissionsIfNeeded($);
@@ -49,16 +48,14 @@ void main() {
           DrivableCamera(
             sensors: sensors,
             saveConfig: SaveConfig.video(
-              pathBuilder:
-                  tempPath('multiple_video_${sensor.name}_$idxVideo.mp4'),
+              pathBuilder: tempPath('multiple_video_${sensor.name}_$idxVideo.mp4'),
             ),
           ),
         );
         await allowPermissionsIfNeeded($);
 
         for (int i = 0; i < videosToTake; i++) {
-          final request = await tempPath(
-              'multiple_video_${sensor.name}_$idxVideo.mp4')(sensors);
+          final request = await tempPath('multiple_video_${sensor.name}_$idxVideo.mp4')(sensors);
           final filePath = request.when(single: (single) => single.file!.path);
           await $(AwesomeCaptureButton).tap(andSettle: false);
           await allowPermissionsIfNeeded($);
@@ -79,15 +76,13 @@ void main() {
         await $.pumpWidgetAndSettle(
           DrivableCamera(
             sensors: sensors,
-            saveConfig: SaveConfig.video(
-                pathBuilder: tempPath('pause_resume_video_$sensor.mp4')),
+            saveConfig: SaveConfig.video(pathBuilder: tempPath('pause_resume_video_$sensor.mp4')),
           ),
         );
 
         await allowPermissionsIfNeeded($);
 
-        final request =
-            await tempPath('pause_resume_video_$sensor.mp4')(sensors);
+        final request = await tempPath('pause_resume_video_$sensor.mp4')(sensors);
         final filePath = request.when(single: (single) => single.file!.path);
 
         await $(AwesomeCaptureButton).tap(andSettle: false);
@@ -129,9 +124,8 @@ void main() {
           sensors: initialSensors,
           saveConfig: SaveConfig.video(
             pathBuilder: (sensors) async {
-              final path = await tempPath(
-                      'switch_sensor_video_${idxSensor}_${switchingSensors[idxSensor].name}.mp4')(
-                  sensors);
+              final path =
+                  await tempPath('switch_sensor_video_${idxSensor}_${switchingSensors[idxSensor].name}.mp4')(sensors);
               idxSensor++;
               return path;
             },
@@ -142,9 +136,7 @@ void main() {
       await allowPermissionsIfNeeded($);
 
       for (int i = 0; i < switchingSensors.length; i++) {
-        final request = await tempPath(
-                'switch_sensor_video_${i}_${switchingSensors[i].name}.mp4')(
-            initialSensors);
+        final request = await tempPath('switch_sensor_video_${i}_${switchingSensors[i].name}.mp4')(initialSensors);
         final filePath = request.when(single: (single) => single.file!.path);
 
         if (i > 0 && switchingSensors[i - 1] != switchingSensors[i]) {

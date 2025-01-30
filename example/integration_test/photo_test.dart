@@ -50,8 +50,7 @@ void photoTests() {
             sensors: sensors,
             saveConfig: SaveConfig.photo(
               pathBuilder: (sensors) async {
-                final request = await tempPath(
-                    'multiple_photo_${sensor.name}_$idxPicture.jpg')(sensors);
+                final request = await tempPath('multiple_photo_${sensor.name}_$idxPicture.jpg')(sensors);
                 idxPicture++;
                 return request;
               },
@@ -62,8 +61,7 @@ void photoTests() {
         await allowPermissionsIfNeeded($);
 
         for (int i = 0; i < picturesToTake; i++) {
-          final request = await tempPath(
-              'multiple_photo_${sensor.name}_$idxPicture.jpg')(sensors);
+          final request = await tempPath('multiple_photo_${sensor.name}_$idxPicture.jpg')(sensors);
           final filePath = request.when(single: (single) => single.file!.path);
           await $(AwesomeCaptureButton).tap();
           expect(File(filePath).existsSync(), true);
@@ -89,9 +87,8 @@ void photoTests() {
           sensors: initialSensors,
           saveConfig: SaveConfig.photo(
             pathBuilder: (sensors) async {
-              final request = await tempPath(
-                      'switch_sensor_photo_${idxSensor}_${switchingSensors[idxSensor].name}.jpg')(
-                  sensors);
+              final request =
+                  await tempPath('switch_sensor_photo_${idxSensor}_${switchingSensors[idxSensor].name}.jpg')(sensors);
               idxSensor++;
               return request;
             },
@@ -102,9 +99,8 @@ void photoTests() {
       await allowPermissionsIfNeeded($);
 
       for (int i = 0; i < switchingSensors.length; i++) {
-        final request = await tempPath(
-                'switch_sensor_photo_${idxSensor}_${switchingSensors[idxSensor].name}.jpg')(
-            initialSensors);
+        final request =
+            await tempPath('switch_sensor_photo_${idxSensor}_${switchingSensors[idxSensor].name}.jpg')(initialSensors);
         final filePath = request.when(single: (single) => single.file!.path);
         if (i > 0 && switchingSensors[i - 1] != switchingSensors[i]) {
           await $.tester.pumpAndSettle();

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:typed_data';
 
+import 'package:camerawesome/src/orchestrator/models/capture_request.dart';
 import 'package:camerawesome/src/orchestrator/file/content/file_content.dart';
 import 'package:image/image.dart' as img;
 import 'package:camerawesome/camerawesome_plugin.dart';

@@ -200,11 +200,7 @@ void main() {
       await $.pump(const Duration(milliseconds: 100));
       // FLash on next
       expect(
-        find
-            .byType(Icon)
-            .evaluate()
-            .where((element) => (element.widget as Icon).icon == Icons.flash_on)
-            .length,
+        find.byType(Icon).evaluate().where((element) => (element.widget as Icon).icon == Icons.flash_on).length,
         equals(1),
       );
       await $.tester.tap(flashButton, warnIfMissed: false);

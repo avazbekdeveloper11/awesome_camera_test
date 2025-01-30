@@ -8,10 +8,7 @@ main() {
   patrol('Concurrent > Basic run', ($) async {
     await $.pumpWidgetAndSettle(
       DrivableCamera(
-        sensors: [
-          Sensor.position(SensorPosition.back),
-          Sensor.position(SensorPosition.front)
-        ],
+        sensors: [Sensor.position(SensorPosition.back), Sensor.position(SensorPosition.front)],
         saveConfig: SaveConfig.photoAndVideo(
           photoPathBuilder: tempPath('single_photo_back.jpg'),
           videoPathBuilder: tempPath('single_video_back.mp4'),
